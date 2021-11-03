@@ -7,12 +7,21 @@
 	   The mana will still be expended, even if it is to no effect.
 	4. The healer will try to cast Small Heal before it tries to cast Big Heal.
 */
-// fuck it up baaaaaaabyyyyyyyy
 
+using System.IO;
 using UnityEngine;
 
-public class Level1 : MonoBehaviour {
-	
+public class Level1 : MonoBehaviour
+{
+	private string filename = "\\LEVEL1_HEALTH_STATS.csv";
+
+	void Start()
+	{
+		TextWriter wr = new StreamWriter(Application.dataPath + filename,false);
+		wr.WriteLine("Timestep, Boss, Warrior, Rogue, Mage, Druid, Priest");
+		wr.Close();
+	}
+
 	//Stats
 	int BossHealth = 5000;
 	int[] SquishiesHealth = {1000, 1250, 1500, 900}; //Health of mage, druid, rogue, priest
@@ -127,6 +136,12 @@ public class Level1 : MonoBehaviour {
 				return; //Stop simulation for this frame
 			}
 			//TODO WRITING HEALTH TO CSV AND CALCULATING SCORE MUCH LOVE
+			
+			//Start of csv writing
+			TextWriter hw = new StreamWriter(Application.dataPath + filename, true);
+			hw.WriteLine(timesteps + "," + BossHealth + "," + TankHealth + "," + SquishiesHealth[2] + "," + SquishiesHealth[0] + "," + SquishiesHealth[1] + "," + SquishiesHealth[3]);
+			hw.Close();
+			//end of csv
 		}
 	}
 	

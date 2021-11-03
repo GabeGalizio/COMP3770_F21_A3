@@ -14,12 +14,14 @@ using UnityEngine;
 public class Level1 : MonoBehaviour
 {
 	private string filename = "\\LEVEL1_HEALTH_STATS.csv";
+	private string filename2 = "\\LEVEL1_DMG.txt";
 
 	void Start()
 	{
 		TextWriter wr = new StreamWriter(Application.dataPath + filename,false);
 		wr.WriteLine("Timestep, Boss, Warrior, Rogue, Mage, Druid, Priest");
 		wr.Close();
+		
 	}
 
 	//Stats
@@ -36,10 +38,8 @@ public class Level1 : MonoBehaviour
 	
 	//Step every frame
 	void Update() {
-		
 		//Will only run if nobody has "beefed it"
 		if(!dead) {
-			
 			timesteps++;
 			
 			//Warrior: Deal 5-10 dmg to boss
@@ -66,6 +66,11 @@ public class Level1 : MonoBehaviour
 			if(BossHealth <= 0) {
 				BossHealth = 0;
 				dead = true;
+				//Start of csv writing
+				TextWriter hw1 = new StreamWriter(Application.dataPath + filename, true);
+				hw1.WriteLine(timesteps + "," + BossHealth + "," + TankHealth + "," + SquishiesHealth[2] + "," + SquishiesHealth[0] + "," + SquishiesHealth[1] + "," + SquishiesHealth[3]);
+				hw1.Close();
+				//end of csv
 				return; //Stop simulation for this frame
 			}
 		
@@ -112,7 +117,6 @@ public class Level1 : MonoBehaviour
 				}
 			}
 			
-			//Boss attacks TODO
 			
 			//Squishies
 			for(int i = 0; i < 4; i++) {
@@ -122,6 +126,9 @@ public class Level1 : MonoBehaviour
 				if(SquishiesHealth[i] < 1) {
 					SquishiesHealth[i] = 0;
 					dead = true;
+					TextWriter hw1 = new StreamWriter(Application.dataPath + filename, true);
+					hw1.WriteLine(timesteps + "," + BossHealth + "," + TankHealth + "," + SquishiesHealth[2] + "," + SquishiesHealth[0] + "," + SquishiesHealth[1] + "," + SquishiesHealth[3]);
+					hw1.Close();
 					return; //Stop simulation for this frame
 				}
 			}
@@ -133,6 +140,9 @@ public class Level1 : MonoBehaviour
 			if(TankHealth < 1) {
 				TankHealth = 0;
 				dead = true;
+				TextWriter hw1 = new StreamWriter(Application.dataPath + filename, true);
+				hw1.WriteLine(timesteps + "," + BossHealth + "," + TankHealth + "," + SquishiesHealth[2] + "," + SquishiesHealth[0] + "," + SquishiesHealth[1] + "," + SquishiesHealth[3]);
+				hw1.Close();
 				return; //Stop simulation for this frame
 			}
 			//TODO WRITING HEALTH TO CSV AND CALCULATING SCORE MUCH LOVE
@@ -142,6 +152,9 @@ public class Level1 : MonoBehaviour
 			hw.WriteLine(timesteps + "," + BossHealth + "," + TankHealth + "," + SquishiesHealth[2] + "," + SquishiesHealth[0] + "," + SquishiesHealth[1] + "," + SquishiesHealth[3]);
 			hw.Close();
 			//end of csv
+			TextWriter wr2 = new StreamWriter(Application.dataPath + filename2,false);
+			wr2.WriteLine(BossDMG);
+			wr2.Close();
 		}
 	}
 	

@@ -1,0 +1,77 @@
+Please mark tasks done as they are completed. :)
+ALSO NOTE. This is done in Unity Ver 2020.3.18f1. If you're having problems be sure you're running that ver of Unity <3
+
+1. [10 marks] Make a new 3D project and Git repository named with assignment number and group
+name. Be sure all group members are using Git and making commits in the spirit of collaborative
+source control. Add the instructor and your group’s assigned marker with Reporter level
+permissions. //DONE BY GABE
+
+2. [40 marks – 8 per scene, GUI behavior] Create 5 scenes. 
+
+The first scene is the “Main Menu” scene. This scene will be the first to load automatically. This scene will have 4 buttons. Each button will take the player to different scenes: //DONE BY GIANNA
+
+a. A scene called Scores that displays 3 different pairs of values. In each pair, one value is the
+maximum amount of total damage done by the party to the boss, and the other value is the 
+maximum amount of total damage done by the boss to the party. Each pair corresponds to
+one of the three levels (explained below). This scene will also have a back button to go
+back to the main menu.
+
+b. A scene called Level1. This level will contain no (extra) economical feedback. When any
+character (the boss or any party member) dies, the scene ends by stopping simulation and
+prompting the user to click a button that takes the user back to the Main Menu. The total
+damage done by the boss should be compared to what is saved and displayed for this level
+in Scores. If, on this run, the damage done by the boss is greater than what is saved, it
+should be replaced with this new value. The same should occur for the damage done by the
+party. The current health of and total damage done by each party member and by the boss
+must be displayed on the screen while this level is running.
+
+c. A scene called Level2. This will be identical to Level1. However, this level will contain
+negative feedback in terms of how the boss damages the party. In this case, when the tank
+has less than or equal to 1500 health, the healer casts an extra heal (either Big Heal or
+Small Heal, decided randomly) every time-step for no mana cost.
+
+d. A scene called Level3. This will be identical to Level1. However, this level will contain
+positive feedback in terms of damage dealt by the boss to the party. Here, take a 100th of
+the total damage done to the party by the boss, and in the current time-step, apply that
+damage to the tank (in addition to the damage already being done to the tank). Round the
+fractional value to an integer before applying the damage to the tank.
+
+3. [50 marks] Correctness of behaviour of the characters. Every time-step, output the health of all
+characters to a csv file (Time-step, boss, warrior, rogue, mage, druid, priest). Run each level once
+and save the data in your assignment folder. Characters must be designed as follows:
+
+a. Boss:
+i. 5000 health
+ii. Deals 5-20 damage to damage-dealers and healer every time-step
+iii. Deals 40-50 damage to the tank every time-step
+
+b. Warrior (Tank):
+i. 3000 health
+ii. Deals 5-10 damage to the boss every time-step
+
+c. Rogue (Damage-dealer #1):
+i. 1500 health
+ii. Deals 15-25 damage to the boss every time-step
+
+d. Mage (Damage-dealer #2):
+i. 1000 health
+ii. Deals 5-30 damage to the boss every time-step
+
+e. Moonkin Druid (Damage-dealer #3):
+i. 1250 health
+ii. Deals 5-15 damage to the boss every time-step
+
+f. Priest (Healer):
+i. 900 health
+ii. 1000 mana
+iii. Deals NO damage
+iv. Randomly selects itself or one damage-dealer and casts “Small Heal”, healing them
+for 15 health and costing 5 mana (casts this once per time-step)
+v. The probability it selects itself is twice as high as the probability it selects a damage
+dealer (not a very good healer, really)
+vi. Casts “Big Heal” (which costs 10 mana) on the tank, healing the tank for 25 health
+(casts this also once per time-step)
+vii. Regenerates mana at a rate of 3 mana per time-step.
+
+You will have to research writing to a file and doing math in C#, and random number generation in Unity.
+Include the Unity project and 3 csv files from the simulation runs in Unity.

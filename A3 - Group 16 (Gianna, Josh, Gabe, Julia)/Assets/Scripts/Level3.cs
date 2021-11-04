@@ -9,10 +9,14 @@
 */
 
 using System;
+using System.IO;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Level3 : MonoBehaviour {
+	
+	private string filename = "\\LEVEL3_HEALTH_STATS.csv";
+	private string filename2 = "\\LEVEL3_DMG.txt";
 	
 	//Stats
 	int _bossHealth = 5000;
@@ -24,6 +28,14 @@ public class Level3 : MonoBehaviour {
 	double _bonusBossDmg = 0;
 	int[] _partyDmg = {0,0,0,0,0}; //Party dmg order: Warrior, Rogue, Mage, Druid, Priest
 	int _timesteps = 0;
+	
+	void Start()
+	{
+		TextWriter wr = new StreamWriter(Application.dataPath + filename,false);
+		wr.WriteLine("Timestep, Boss, Warrior, Rogue, Mage, Druid, Priest");
+		wr.Close();
+		
+	}
 	
 	public bool dead = false;
 	
@@ -128,6 +140,15 @@ public class Level3 : MonoBehaviour {
 		_bossDmg += (int)_bonusBossDmg;
 		_tankHealth -= _random;
 		_tankHealth -= (int) _bonusBossDmg;
+		
+		TextWriter hw = new StreamWriter(Application.dataPath + filename, true);
+		hw.WriteLine(_timesteps + "," + _bossHealth + "," + _tankHealth + "," + _squishiesHealth[2] + "," + _squishiesHealth[0] + "," + _squishiesHealth[1] + "," + _squishiesHealth[3]);
+		hw.Close();
+		//end of csv
+		TextWriter wr2 = new StreamWriter(Application.dataPath + filename2,false);
+		wr2.WriteLine(_bossDmg);
+		wr2.Close();
+		
 		if (_tankHealth >= 1) return; //Stop simulation for this frame
 		_tankHealth = 0;
 		dead = true;

@@ -8,9 +8,13 @@
 	4. The healer will try to cast Small Heal before it tries to cast Big Heal.
 */
 
+using System.IO;
 using UnityEngine;
 
 public class Level2 : MonoBehaviour {
+	
+	private string filename = "\\LEVEL2_HEALTH_STATS.csv";
+	private string filename2 = "\\LEVEL2_DMG.txt";
 	
 	//Stats
 	int _bossHealth = 5000;
@@ -23,6 +27,14 @@ public class Level2 : MonoBehaviour {
 	int _timesteps = 0;
 	
 	public bool dead = false;
+	
+	void Start()
+	{
+		TextWriter wr = new StreamWriter(Application.dataPath + filename,false);
+		wr.WriteLine("Timestep, Boss, Warrior, Rogue, Mage, Druid, Priest");
+		wr.Close();
+		
+	}
 	
 	//Step every frame
 	void Update()
@@ -155,10 +167,19 @@ public class Level2 : MonoBehaviour {
 
 		}
 
+		TextWriter hw = new StreamWriter(Application.dataPath + filename, true);
+		hw.WriteLine(_timesteps + "," + _bossHealth + "," + _tankHealth + "," + _squishiesHealth[2] + "," + _squishiesHealth[0] + "," + _squishiesHealth[1] + "," + _squishiesHealth[3]);
+		hw.Close();
+		//end of csv
+		TextWriter wr2 = new StreamWriter(Application.dataPath + filename2,false);
+		wr2.WriteLine(_bossDmg);
+		wr2.Close();
+		
 		if (_tankHealth >= 1) return; //Stop simulation for this frame
 		_tankHealth = 0;
 		dead = true;
 		//TODO WRITING HEALTH TO CSV AND CALCULATING SCORE MUCH LOVE
+
 	}
 	
 	//GUI for the able sighted.

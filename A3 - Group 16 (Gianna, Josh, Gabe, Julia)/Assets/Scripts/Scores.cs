@@ -42,10 +42,10 @@ public class Scores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Level 1 stuff 
+        //Level 1 
         TextReader trlvl1 = new StreamReader(Application.dataPath + filename1,false);
-        TextReader trlvl1DMG = new StreamReader(Application.dataPath + filename11);
-        TextReader trlvlScores = new StreamReader(Application.dataPath + filename111);
+        TextReader trlvl1DMG = new StreamReader(Application.dataPath + filename11,false);
+        TextReader trlvlScores = new StreamReader(Application.dataPath + filename111,false);
         
         temp = trlvl1.ReadLine();
         temp = trlvl1.ReadToEnd();
@@ -76,12 +76,12 @@ public class Scores : MonoBehaviour
         TextWriter twlvl1 = new StreamWriter(Application.dataPath + filename111,false);
         twlvl1.WriteLine(bossHlvl1 + "," + bossDamagelvl1);
         twlvl1.Close();
-    /*
+    
         
         //level 2
         TextReader trlvl2 = new StreamReader(Application.dataPath + filename2,false);
-        TextReader trlvl2DMG = new StreamReader(Application.dataPath + filename11);
-        TextReader trlvlScores2 = new StreamReader(Application.dataPath + filename111);
+        TextReader trlvl2DMG = new StreamReader(Application.dataPath + filename21,false);
+        TextReader trlvlScores2 = new StreamReader(Application.dataPath + filename211,false);
         
         temp2 = trlvl2.ReadLine();
         temp2 = trlvl2.ReadToEnd();
@@ -98,12 +98,12 @@ public class Scores : MonoBehaviour
         tempH = int.Parse(values2[0]);
         tempDMG = int.Parse(values2[1]);
         
-        if (tempH < bossHlvl2) {
+        if (tempH > bossHlvl2) {
             bossHlvl2 = tempH;
         }
         
         if (tempDMG > bossDamagelvl2) {
-            //bossDamagelvl2 = tempDMG;
+            bossDamagelvl2 = tempDMG;
         }
         //level 2 closes
         trlvl2.Close();
@@ -113,7 +113,7 @@ public class Scores : MonoBehaviour
         TextWriter twlvl2 = new StreamWriter(Application.dataPath + filename111,false);
         twlvl2.WriteLine(bossHlvl2 + "," + bossDamagelvl2);
         twlvl2.Close();
-        
+        /*
         //level 3
         TextReader trlvl3 = new StreamReader(Application.dataPath + filename3,false);
         TextReader trlvl3DMG = new StreamReader(Application.dataPath + filename11);

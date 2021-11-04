@@ -180,7 +180,7 @@ public class Level1 : MonoBehaviour
 		GUI.Label(new Rect(150, 30, rectWidth, rectHeight), "Rogue Damage: " + PartyDMG[1].ToString());
 		GUI.Label(new Rect(150, 40, rectWidth, rectHeight), "Mage Damage: " + PartyDMG[2].ToString());
 		GUI.Label(new Rect(150, 50, rectWidth, rectHeight), "Druid Damage: " + PartyDMG[3].ToString());
-		GUI.Label(new Rect(150, 60, rectWidth, rectHeight), "Priest Damage: 9999999999999999999999999999999");
+		GUI.Label(new Rect(150, 60, rectWidth, rectHeight), "Priest Damage: 0");
 		
 		//And timesteps
 		GUI.Label(new Rect(300, 10, rectWidth, rectHeight), "Timesteps: " + timesteps.ToString());

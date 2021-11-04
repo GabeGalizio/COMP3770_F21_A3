@@ -14,7 +14,7 @@ a. A scene called Scores that displays 3 different pairs of values. In each pair
 maximum amount of total damage done by the party to the boss, and the other value is the 
 maximum amount of total damage done by the boss to the party. Each pair corresponds to
 one of the three levels (explained below). This scene will also have a back button to go
-back to the main menu.
+back to the main menu. // Done by gabe
 
 b. A scene called Level1. This level will contain no (extra) economical feedback. When any
 character (the boss or any party member) dies, the scene ends by stopping simulation and
@@ -23,18 +23,18 @@ damage done by the boss should be compared to what is saved and displayed for th
 in Scores. If, on this run, the damage done by the boss is greater than what is saved, it
 should be replaced with this new value. The same should occur for the damage done by the
 party. The current health of and total damage done by each party member and by the boss
-must be displayed on the screen while this level is running.
+must be displayed on the screen while this level is running. // done by Gianna 
 
 c. A scene called Level2. This will be identical to Level1. However, this level will contain
 negative feedback in terms of how the boss damages the party. In this case, when the tank
 has less than or equal to 1500 health, the healer casts an extra heal (either Big Heal or
-Small Heal, decided randomly) every time-step for no mana cost.
+Small Heal, decided randomly) every time-step for no mana cost. //done by Julia
 
 d. A scene called Level3. This will be identical to Level1. However, this level will contain
 positive feedback in terms of damage dealt by the boss to the party. Here, take a 100th of
 the total damage done to the party by the boss, and in the current time-step, apply that
 damage to the tank (in addition to the damage already being done to the tank). Round the
-fractional value to an integer before applying the damage to the tank.
+fractional value to an integer before applying the damage to the tank. // done by Julia
 
 3. [50 marks] Correctness of behaviour of the characters. Every time-step, output the health of all
 characters to a csv file (Time-step, boss, warrior, rogue, mage, druid, priest). Run each level once
@@ -74,4 +74,4 @@ vi. Casts “Big Heal” (which costs 10 mana) on the tank, healing the tank for
 vii. Regenerates mana at a rate of 3 mana per time-step.
 
 You will have to research writing to a file and doing math in C#, and random number generation in Unity.
-Include the Unity project and 3 csv files from the simulation runs in Unity.
+Include the Unity project and 3 csv files from the simulation runs in Unity. //done by Josh

@@ -110,18 +110,18 @@ public class Scores : MonoBehaviour
         trlvl2DMG.Close();
         trlvlScores2.Close();
         
-        TextWriter twlvl2 = new StreamWriter(Application.dataPath + filename111,false);
+        TextWriter twlvl2 = new StreamWriter(Application.dataPath + filename211,false);
         twlvl2.WriteLine(bossHlvl2 + "," + bossDamagelvl2);
         twlvl2.Close();
-        /*
+        
         //level 3
         TextReader trlvl3 = new StreamReader(Application.dataPath + filename3,false);
-        TextReader trlvl3DMG = new StreamReader(Application.dataPath + filename11);
-        TextReader trlvlScores3 = new StreamReader(Application.dataPath + filename111);
+        TextReader trlvl3DMG = new StreamReader(Application.dataPath + filename31,false);
+        TextReader trlvlScores3 = new StreamReader(Application.dataPath + filename311,false);
         
-        temp3 = trlvl3.ReadLine();
-        temp3 = trlvl3.ReadToEnd();
-        values3 = temp.Split(',');
+        temp3 = trlvl3.ReadLine(); // skips the line with text 
+        temp3 = trlvl3.ReadToEnd(); //reads to the end of the file
+        values3 = temp.Split(','); //separates the csv file into an array 
         
         bossHlvl3 = 5000 - int.Parse(values3[values3.Length-6]);
         bossDamagelvl3 = int.Parse(trlvl3DMG.ReadLine());
@@ -133,11 +133,11 @@ public class Scores : MonoBehaviour
         tempH = int.Parse(values3[0]);
         tempDMG = int.Parse(values3[1]);
         
-        if (tempH < bossHlvl3) {
+        if (tempH > bossHlvl3) {
             bossHlvl3 = tempH;
         }
         
-        if (tempDMG < bossDamagelvl3) {
+        if (tempDMG > bossDamagelvl3) {
             bossDamagelvl3 = tempDMG;
         }
             
@@ -146,15 +146,9 @@ public class Scores : MonoBehaviour
         trlvl3DMG.Close();
         trlvlScores3.Close();
         
-        TextWriter twlvl3 = new StreamWriter(Application.dataPath + filename111,false);
+        TextWriter twlvl3 = new StreamWriter(Application.dataPath + filename311,false);
         twlvl3.WriteLine(bossHlvl3 + "," + bossDamagelvl3);
         twlvl3.Close();
-       */
-    
-        
-    
-        
-    
     }
 
     // Update is called once per frame

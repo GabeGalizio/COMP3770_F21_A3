@@ -22,7 +22,7 @@ public class Scores : MonoBehaviour
 
     //level 2
     private string filename2 ="\\LEVEL2_HEALTH_STATS.csv";
-    private string filename21 ="\\LEVEL1_DMG.txt";
+    private string filename21 ="\\LEVEL2_DMG.txt";
     private string filename211 ="\\Level2_Scores.txt";
     private int bossHlvl2;
     private int bossDamagelvl2;
@@ -31,7 +31,7 @@ public class Scores : MonoBehaviour
     
     //level 3
     private string filename3 ="\\LEVEL3_HEALTH_STATS.csv";
-    private string filename31 ="\\LEVEL1_DMG.txt";
+    private string filename31 ="\\LEVEL3_DMG.txt";
     private string filename311 ="\\Level3_Scores.txt";
     private int bossHlvl3;
     private int bossDamagelvl3;
@@ -68,7 +68,7 @@ public class Scores : MonoBehaviour
             bossDamagelvl1 = tempDMG;
         }
         
-        //level 1 closees 
+        //level 1 closes 
         trlvl1.Close();
         trlvl1DMG.Close();
         trlvlScores.Close();
@@ -110,6 +110,10 @@ public class Scores : MonoBehaviour
         trlvl2DMG.Close();
         trlvlScores2.Close();
         
+        TextWriter twlvl2 = new StreamWriter(Application.dataPath + filename111,false);
+        twlvl2.WriteLine(bossHlvl2 + "," + bossDamagelvl2);
+        twlvl2.Close();
+        
         //level 3
         TextReader trlvl3 = new StreamReader(Application.dataPath + filename3,false);
         TextReader trlvl3DMG = new StreamReader(Application.dataPath + filename11);
@@ -136,23 +140,21 @@ public class Scores : MonoBehaviour
         if (tempDMG < bossDamagelvl3) {
             bossDamagelvl3 = tempDMG;
         }
-        
-       
-        
+            
         //level 3 closes
         trlvl3.Close();
         trlvl3DMG.Close();
         trlvlScores3.Close();
+        
+        TextWriter twlvl3 = new StreamWriter(Application.dataPath + filename111,false);
+        twlvl3.WriteLine(bossHlvl3 + "," + bossDamagelvl3);
+        twlvl3.Close();
        */
     
         
-    TextWriter twlvl2 = new StreamWriter(Application.dataPath + filename111,false);
-    twlvl2.WriteLine(bossHlvl2 + "," + bossDamagelvl2);
-    twlvl2.Close();
+    
         
-    TextWriter twlvl3 = new StreamWriter(Application.dataPath + filename111,false);
-    twlvl3.WriteLine(bossHlvl3 + "," + bossDamagelvl3);
-    twlvl3.Close();
+    
     }
 
     // Update is called once per frame

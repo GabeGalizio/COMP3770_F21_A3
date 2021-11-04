@@ -15,8 +15,8 @@ public class Scores : MonoBehaviour
     private string filename1 ="\\LEVEL1_HEALTH_STATS.csv";
     private string filename11 ="\\LEVEL1_DMG.txt";
     private string filename111 ="\\Level1_Scores.txt";
-    private int bossHlvl1=69;
-    private int bossDamagelvl1=37;
+    private int bossHlvl1;
+    private int bossDamagelvl1;
     private string[] values;
     private string temp;
 
@@ -37,6 +37,8 @@ public class Scores : MonoBehaviour
     private int bossDamagelvl3;
     private string temp3;
     private string[] values3;
+    private int tempDMG3;
+    private int tempH3;
 
     
     // Start is called before the first frame update
@@ -76,7 +78,6 @@ public class Scores : MonoBehaviour
         TextWriter twlvl1 = new StreamWriter(Application.dataPath + filename111,false);
         twlvl1.WriteLine(bossHlvl1 + "," + bossDamagelvl1);
         twlvl1.Close();
-    
         
         //level 2
         TextReader trlvl2 = new StreamReader(Application.dataPath + filename2,false);
@@ -119,17 +120,15 @@ public class Scores : MonoBehaviour
         TextReader trlvl3DMG = new StreamReader(Application.dataPath + filename31,false);
         TextReader trlvlScores3 = new StreamReader(Application.dataPath + filename311,false);
         
-        temp3 = trlvl3.ReadLine(); // skips the line with text 
-        temp3 = trlvl3.ReadToEnd(); //reads to the end of the file
-        values3 = temp.Split(','); //separates the csv file into an array 
+        temp3 = trlvl3.ReadLine();
+        temp3 = trlvl3.ReadToEnd();
+        values3 = temp3.Split(',');
         
         bossHlvl3 = 5000 - int.Parse(values3[values3.Length-6]);
         bossDamagelvl3 = int.Parse(trlvl3DMG.ReadLine());
         
-        tempH = 0;
-        tempDMG = 0;
         temp3 = trlvlScores3.ReadLine();
-        values3 = temp.Split(',');
+        values3 = temp3.Split(',');
         tempH = int.Parse(values3[0]);
         tempDMG = int.Parse(values3[1]);
         
@@ -140,8 +139,7 @@ public class Scores : MonoBehaviour
         if (tempDMG > bossDamagelvl3) {
             bossDamagelvl3 = tempDMG;
         }
-            
-        //level 3 closes
+        
         trlvl3.Close();
         trlvl3DMG.Close();
         trlvlScores3.Close();
